@@ -178,7 +178,15 @@
     // Set video source
     videoFrame.src = `https://drive.google.com/file/d/${flight.videoId}/preview`;
     
-    modal.show();
+    // Tambahkan event listener untuk menghentikan video saat modal ditutup
+    const modal = document.getElementById('flightModal');
+    modal.addEventListener('hidden.bs.modal', function () {
+      // Menghentikan video dengan mengosongkan src iframe
+      videoFrame.src = '';
+    });
+    
+    // Tampilkan modal
+    bootstrap.Modal.getInstance(modal).show();
   }
 </script>
 
